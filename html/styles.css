@@ -1,0 +1,148 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: transparent;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.ui-container {
+    background-color: rgba(40, 40, 40, 0.95);
+    border-radius: 10px;
+    padding: 20px;
+    width: 95%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+}
+
+h2 {
+    text-align: center;
+    color: #ff0000;
+    margin: 0 0 15px 0;
+    font-size: 24px;
+}
+
+h3 {
+    color: #fff;
+    margin: 15px 0 10px 0;
+    font-size: 18px;
+}
+
+.invoice-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+select, input, textarea, button {
+    padding: 10px;
+    border: 1px solid #555;
+    background-color: #2a2a2a;
+    color: #fff;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#description {
+    height: 60px;
+    resize: none;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.table-container {
+    overflow-y: auto;
+    max-height: calc(90vh - 300px);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    background-color: rgba(60, 60, 60, 0.6);
+    border-bottom: 1px solid #555;
+}
+
+th {
+    background-color: #333;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+td:nth-child(4), th:nth-child(4) {
+    text-align: right;
+}
+
+td:last-child button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    .ui-container {
+        padding: 15px;
+        width: 98%;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    select, input, textarea, button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    #description {
+        height: 50px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    td:last-child button {
+        padding: 3px 6px;
+        font-size: 11px;
+    }
+}

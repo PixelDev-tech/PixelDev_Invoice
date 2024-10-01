@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="sendInvoiceUI" class="ui-container" style="display: none;">
+            <h2 id="sendInvoiceTitle">Send Invoice</h2>
+            <form class="invoice-form">
+                <select id="playerSelect">
+                    <option value="">Select a player</option>
+                </select>
+                <textarea id="description" placeholder="Description"></textarea>
+                <input type="number" id="amount" placeholder="Amount">
+                <button id="sendInvoiceBtn" type="submit">Send Invoice</button>
+            </form>
+            <h3>Unpaid Bills for Selected Player</h3>
+            <button id="refreshUnpaidBillsBtn">Refresh Unpaid Bills</button>
+            <div class="table-container">
+                <table id="unpaidBillsTable">
+                    <thead>
+                        <tr>
+                            <th>Sender</th>
+                            <th>Job</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="payInvoiceUI" class="ui-container" style="display: none;">
+            <h2 id="yourInvoicesTitle">Your Invoices</h2>
+            <button id="refreshInvoicesBtn">Refresh Invoices</button>
+            <div class="table-container">
+                <table id="invoicesTable">
+                    <thead>
+                        <tr>
+                            <th id="fromHeader">From</th>
+                            <th id="jobHeader">Job</th>
+                            <th id="descriptionHeader">Description</th>
+                            <th id="amountHeader">Amount</th>
+                            <th id="actionsHeader">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="collectInvoiceUI" class="ui-container" style="display: none;">
+            <h2 id="collectInvoicesTitle">Collect Invoices</h2>
+            <button id="refreshCollectBtn">Refresh Collect</button>
+            <div class="table-container">
+                <table id="jobInvoicesTable">
+                    <thead>
+                        <tr>
+                            <th id="toHeader">To</th>
+                            <th id="descriptionHeader2">Description</th>
+                            <th id="amountHeader2">Amount</th>
+                            <th id="actionsHeader2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
