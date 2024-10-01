@@ -5,6 +5,8 @@ Join Discord https://discord.gg/eYaRkWAM2U
 
 ![Screenshot_226](https://github.com/user-attachments/assets/31dde8b5-7271-4f27-9f42-91a20f8598a1)
 
+Preview https://youtu.be/2WEXqr44G3E
+
 **Invoice Creation and Management**
 
 Authorized jobs can create and send invoices to other players
