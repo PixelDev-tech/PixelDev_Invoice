@@ -14,6 +14,7 @@ Commands to open different UIs: /sendinvoice, /invoice, /collectinvoice
 UI can be closed using the ESC key
 
 
+
 Payment Processing
 
 Players can view and pay their unpaid invoices
