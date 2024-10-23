@@ -330,7 +330,7 @@ AddEventHandler('PixelDev_Invoice:collectInvoice', function(invoiceId)
     end
 end)
 --pixeldev.tebex.io
--- Function to get online players
+-- Update the GetOnlinePlayers function
 function GetOnlinePlayers()
     local players = {}
     for _, playerId in ipairs(GetPlayers()) do
