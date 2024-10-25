@@ -106,3 +106,6 @@ Config.Language = {
 }
 
 --pixeldev.tebex.io  --Join Discord https://discord.gg/eYaRkWAM2U
+
+-- New option for UI toggle
+Config.UseUI = false  -- Set to false to use command-based invoice sending

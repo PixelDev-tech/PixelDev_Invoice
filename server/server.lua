@@ -98,13 +98,11 @@ function SendWebhook(url, message)
 end
 
 RegisterServerEvent('PixelDev_Invoice:sendInvoice')
-AddEventHandler('PixelDev_Invoice:sendInvoice', function(targetPlayerId, description, amount,senderJob)
+AddEventHandler('PixelDev_Invoice:sendInvoice', function(targetPlayerId, description, amount)
     local _source = source
     local Character = VorpCore.getUser(_source).getUsedCharacter
     local senderName = Character.firstname .. ' ' .. Character.lastname
-    local senderJob = senderJob or Character.job
-
-    --debugPrint("Send invoice attempt - Sender ID:", _source, "Target ID:", targetPlayerId, "Amount:", amount)
+    local senderJob = Character.job
 
     -- Check if sender's job is allowed to send invoices
     if not Config.AllowedJobs[senderJob] then
@@ -330,7 +328,7 @@ AddEventHandler('PixelDev_Invoice:collectInvoice', function(invoiceId)
     end
 end)
 --pixeldev.tebex.io
--- Function to get online players
+-- Update the GetOnlinePlayers function
 function GetOnlinePlayers()
     local players = {}
     for _, playerId in ipairs(GetPlayers()) do

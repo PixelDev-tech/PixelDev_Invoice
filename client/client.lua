@@ -132,8 +132,25 @@ function CloseInvoiceUI()
 end
 
 -- Command to open the send invoice UI (for authorized jobs only)
-RegisterCommand('sendinvoice', function()
-    OpenSendInvoiceUI()
+RegisterCommand('sendinvoice', function(source, args)
+    if Config.UseUI then
+        OpenSendInvoiceUI()
+    else
+        if #args < 3 then
+            TriggerEvent('vorp:TipBottom', 'Usage: /sendinvoice [playerID] [description] [amount]', 5000)
+            return
+        end
+        local targetPlayerId = tonumber(args[1])
+        local description = table.concat(args, " ", 2, #args - 1)
+        local amount = tonumber(args[#args])
+        
+        if not targetPlayerId or not description or not amount then
+            TriggerEvent('vorp:TipBottom', 'Invalid input. Please check your command.', 5000)
+            return
+        end
+        
+        TriggerServerEvent('PixelDev_Invoice:sendInvoice', targetPlayerId, description, amount)
+    end
 end, false)
 
 -- Command to open the pay invoice UI (for all players)
