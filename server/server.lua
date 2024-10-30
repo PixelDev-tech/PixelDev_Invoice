@@ -134,16 +134,22 @@ AddEventHandler('PixelDev_Invoice:sendInvoice', function(targetPlayerId, descrip
         local receiverName = targetCharacter.firstname .. ' ' .. targetCharacter.lastname
 
         SaveInvoice(_source, senderName, senderJob, targetPlayerId, receiverName, description, amount)
+        
+        -- Notify sender
         TriggerClientEvent('vorp:TipBottom', _source, Config.Language[Config.DefaultLanguage].invoiceSent:format(receiverName), 5000)
-        TriggerClientEvent('PixelDev_Invoice:updateInvoices', tonumber(targetPlayerId))
+        
+        -- Update UI if using UI mode
+        if Config.SendInvoiceUI then
+            TriggerClientEvent('PixelDev_Invoice:updateInvoices', tonumber(targetPlayerId))
+            -- Update unpaid bills for the sender
+            FetchUnpaidBills(targetPlayerId, function(bills)
+                TriggerClientEvent('PixelDev_Invoice:updateUnpaidBills', _source, bills)
+            end)
+        end
 
-        -- Update unpaid bills for the sender
-        FetchUnpaidBills(targetPlayerId, function(bills)
-            TriggerClientEvent('PixelDev_Invoice:updateUnpaidBills', _source, bills)
-        end)
-
-        -- Send webhook for invoice sent
-        local webhookMessage = string.format("New invoice sent: %s (%s) sent an invoice of $%s to %s for %s", senderName, senderJob, amount, receiverName, description)
+        -- Send webhook
+        local webhookMessage = string.format("New invoice sent: %s (%s) sent an invoice of $%s to %s for %s", 
+            senderName, senderJob, amount, receiverName, description)
         SendWebhook(Config.Webhooks.InvoiceSent, webhookMessage)
 
         -- Notify the sender of success

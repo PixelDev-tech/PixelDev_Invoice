@@ -117,10 +117,6 @@ function OpenCollectInvoiceUI()
 end
 
 function CloseInvoiceUI()
-    HideUI()
-end
-
-function CloseInvoiceUI()
     if display then
         SetNuiFocus(false, false)
         SendNUIMessage({
@@ -133,34 +129,44 @@ end
 
 -- Command to open the send invoice UI (for authorized jobs only)
 RegisterCommand('sendinvoice', function(source, args)
-    if Config.UseUI then
+    if Config.SendInvoiceUI then
+        -- Only open UI if enabled in config
         OpenSendInvoiceUI()
     else
+        -- Command-based invoice sending
         if #args < 3 then
-            TriggerEvent('vorp:TipBottom', 'Usage: /sendinvoice [playerID] [description] [amount]', 5000)
+            TriggerEvent('vorp:TipBottom', 'Usage: /sendinvoice [playerID] [amount] [description]', 5000)
             return
         end
-        local targetPlayerId = tonumber(args[1])
-        local description = table.concat(args, " ", 2, #args - 1)
-        local amount = tonumber(args[#args])
         
-        if not targetPlayerId or not description or not amount then
+        local targetPlayerId = tonumber(args[1])
+        local amount = tonumber(args[2])
+        -- Combine remaining args for description
+        local description = table.concat(args, " ", 3)
+        
+        if not targetPlayerId or not amount then
             TriggerEvent('vorp:TipBottom', 'Invalid input. Please check your command.', 5000)
             return
         end
         
+        -- Get player job and trigger server event
+        local playerJob = GetPlayerJob()
         TriggerServerEvent('PixelDev_Invoice:sendInvoice', targetPlayerId, description, amount)
     end
 end, false)
 
 -- Command to open the pay invoice UI (for all players)
-RegisterCommand('invoice', function()
-    OpenPayInvoiceUI()
+RegisterCommand('payinvoice', function()
+    if not display then
+        OpenPayInvoiceUI()
+    end
 end, false)
 
 -- Command to open the collect invoice UI (for authorized jobs only)
 RegisterCommand('collectinvoice', function()
-    OpenCollectInvoiceUI()
+    if not display then
+        OpenCollectInvoiceUI()
+    end
 end, false)
 
 -- Close UI when pressing ESC
